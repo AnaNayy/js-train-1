@@ -369,12 +369,14 @@ function double(n) {
 function compose(func1, func2) {
   // Повертаємо нову функцію, яка приймає аргумент n
   // Повертаємо func2, в яку передаємо func1 з аргументом n
-  return double(compose(n));
-  return func2(func1(n));
+  return function (n) {
+        //Повертаємо func2, в яку передаємо func1 з аргументом n
+    return func2(func1(n));
+  };
 }
-let createCompose = 
+let createCompose = compose(increment, double);
   // Створюємо змінну createCompose якій присвоємо результат виконання функції compose з аргументами 
   //increment та double
 console.log("Завдання 17 ====================================");
 // Розкоментуйте після виконаня завдання
-// console.log("createCompose(5)", createCompose(5)); // Виведе: 12 (5+1=6, 6*2=12)
+console.log("createCompose(5)", createCompose(5)); // Виведе: 12 (5+1=6, 6*2=12)
